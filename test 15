@@ -1,0 +1,465 @@
+1.If the input number num is even, the function is expected to print the first num even whole numbers and in case it is odd, is expected to print the first num odd numbers. For example: given input 2, the function prints the string "0 2" (without quotes).
+
+ 
+
+The function compiles successfully but fails to print the desired result due to logical errors.
+
+incorrect program:
+
+
+#include<stdio.h>
+
+void printpattern(int num)
+{
+    int i, print =0;
+    if(num % 2 == 0)
+    {
+        print=0;
+    for(i = 0; i < num; i ++)
+        printf("%d ",print);
+    print +=2;
+    }
+    else
+	{
+        print=1;
+        for(i=0; i< num ; i++ )
+         	printf("%d ",print);
+        print +=2;
+    }
+}
+int main()
+{
+	int num;
+	scanf("%d",&num);
+	printpattern(num);
+	
+}
+
+
+
+fixed program:
+
+#include<stdio.h>
+
+void printpattern(int num)
+{
+    int i, print =0;
+    if(num % 2 == 0)
+    {
+        print=0;
+    for(i = 0; i < num; i ++)
+    {
+        printf("%d ",print);
+        print +=2;
+    }
+    }
+    else
+	{
+        print=1;
+        for(i=0; i< num ; i++ )
+        {
+         	printf("%d ",print);
+            print +=2;
+        }
+    }
+}
+int main()
+{
+	int num;
+	scanf("%d",&num);
+	printpattern(num);
+	
+}
+
+
+
+2. 
+
+The function getDay(int num) of class Day accepts a number num as input and is supposed to return the day to which it corresponds. The days are mapped to the number num in the following way. Monday is assigned 1, Tuesday 2, ... and Sunday is 7.
+
+ 
+
+The function compiles fine but fails to the return desired result for some test cases.
+
+ 
+
+Your task is to fix the program so that it passes all the test cases.
+
+
+incorrect program:
+
+#include<stdio.h>
+#include<string.h>
+char *getDay(int num)
+{
+	static char str[100];
+    switch(num)
+    {
+        case 1:
+        	strcpy(str,"monday");
+            
+        case 2:
+            strcpy(str,"Tuesday");
+        case 3:
+        	strcpy(str,"Wednesday");
+            
+        case 4:
+        	strcpy(str,"Thurday");
+            
+        case 5:
+        	strcpy(str,"Friday");
+            
+        case 6:
+        	strcpy(str,"Saturday");
+            
+        case 7:
+        	strcpy(str,"Sunday");
+            
+        default:
+        	strcpy(str,"invalid");
+    }
+    return str;
+}
+int main()
+{
+	int num;
+	char *str;
+	scanf("%d",&num);
+	str=getDay(num);
+	printf("%s",str);
+}
+
+
+fixed program:
+
+
+#include<stdio.h>
+#include<string.h>
+char *getDay(int num)
+{
+	static char str[100];
+    switch(num)
+    {
+        case 1:
+        	strcpy(str,"monday");
+        	break;
+            
+        case 2:
+            strcpy(str,"Tuesday");
+            break;
+        case 3:
+        	strcpy(str,"Wednesday");
+        	break;
+            
+        case 4:
+        	strcpy(str,"Thurday");
+        	break;
+            
+        case 5:
+        	strcpy(str,"Friday");
+        	break;
+            
+        case 6:
+        	strcpy(str,"Saturday");
+        	break;
+            
+        case 7:
+        	strcpy(str,"Sunday");
+        	break;
+            
+        default:
+        	strcpy(str,"invalid");
+    }
+    return str;
+}
+int main()
+{
+	int num;
+	char *str;
+	scanf("%d",&num);
+	str=getDay(num);
+	printf("%s",str);
+}
+
+
+
+
+3.The function getDigitSum(int arr[]) of class DigitSum accepts an integer array arr. It is supposed to calculate the sum of digits of the smallest element in the input array. It returns 1 if the calculated sum is even. Otherwise it returns 0.
+
+However, there is a compilation error in the code. Your task is to fix it so that the program works for all input values.
+
+Note: The function getDigitSum uses another function getSum(int num) that returns the sum of digits of the input number num.
+
+
+
+
+incorrect program:
+
+#include<stdio.h>
+int getSum(int num)
+{
+    int sum=0;
+    while(num!=0)
+    {
+        sum=sum+(num%10);
+        num=num/10;
+    }
+    return sum; 
+}
+int getDigitsum(int *arr,int len)
+{
+    int i,result;
+    for(i=0, min =arr[0]; i <len; i++)
+    {
+        if(arr[i]<min)
+            min=arr[i];
+    }
+    result=getSum(min);
+    if(result%2==0)
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+	int arr[100],len,i;
+	scanf("%d",&len);
+	for(i=0;i<len;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	printf("%d",getDigitsum(arr,len));
+}
+
+
+fixed program:
+
+
+#include<stdio.h>
+int getSum(int num)
+{
+    int sum=0;
+    while(num!=0)
+    {
+        sum=sum+(num%10);
+        num=num/10;
+    }
+    return sum; 
+}
+int getDigitsum(int *arr,int len)
+{
+    int i,result,min;
+    for(i=0, min =arr[0]; i <len; i++)
+    {
+        if(arr[i]<min)
+            min=arr[i];
+    }
+    result=getSum(min);
+    if(result%2==0)
+        return 1;
+    else
+        return 0;
+}
+int main()
+{
+	int arr[100],len,i;
+	scanf("%d",&len);
+	for(i=0;i<len;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	printf("%d",getDigitsum(arr,len));
+}
+
+
+4.test is passed to it as an argument (0 s marks s 100). Given a particular marks, a grade is calculated as per the following table marks
+
+Score                                          Grade
+1.      marks ≥ 91     ----------- A
+2.     76 s marks ≤ 90---------B
+3.     61 s marks s 75----------C
+4.     marks s 60------------- D
+
+The function compiles successfully but fails to return the desired result due to logical errors
+Your task is to debug the program to pass all the test cases.
+
+
+#include<stdio.h>
+char checkGrade(int marks)
+{
+	if(marks<=60)
+		return 'D';
+	else
+		if((61<=marks) || (marks<=75))
+			return 'C';
+		else
+			if((76<=marks)||(marks<=90))
+				return 'B';
+			else
+				return 'A';
+}
+int main()
+{
+	int marks;
+	scanf("%d",&marks);
+	printf("%c",checkGrade(marks));
+}
+
+fixed program:
+
+#include<stdio.h>
+char checkGrade(int marks)
+{
+	if(marks<=60)
+		return 'D';
+	else
+		if((61<=marks) && (marks<=75))
+			return 'C';
+		else
+			if((76<=marks)&&(marks<=90))
+				return 'B';
+			else
+				return 'A';
+}
+int main()
+{
+	int marks;
+	scanf("%d",&marks);
+	printf("%c",checkGrade(marks));
+}
+
+
+5.Find the factorial of a given number.
+
+
+incorrect program:
+
+#include<stdio.h>
+int main()
+{
+    long int fact = 1, n, i;
+    scanf("%d", &n);
+
+    for(i =1; i <= n; i++)
+    {
+        fact = fact * i;
+    }
+    printf("%d", fact);
+    return 0;
+}
+
+
+fixed program:
+
+
+#include<stdio.h>
+int main()
+{
+    long int fact = 1, n, i;
+    scanf("%ld", &n);
+
+    for(i =1; i <= n; i++)
+    {
+        fact = fact * i;
+    }
+    printf("%ld", fact);
+    return 0;
+}
+
+
+6.Check whether the below program print the below pattern
+
+1111
+
+222
+
+33
+
+
+incorrect program:
+
+
+#include<stdio.h>
+int main()
+{
+    int i, j, n; 
+    scanf("%d", &n);
+    for(i = 1; i<=n; i++) 
+    {   
+        for(j = 1; j<=n; j++)   
+        {     
+            printf("%d", i);  
+        }  
+        printf("\n");
+    }
+    return 0;
+}
+
+
+fixed program:
+
+
+#include<stdio.h>
+int main()
+{
+    int i, j, n; 
+    scanf("%d", &n);
+    for(i = 1; i<=n; i++) 
+    {   
+        for(j = i; j<=n+1; j++)   
+        {     
+            printf("%d", i);  
+        }  
+        printf("\n");
+    }
+    return 0;
+}
+
+
+7. Find the greatest of three numbers.
+
+
+incorrect program:
+
+#include<stdio.h>
+int main()
+{
+    int num1, num2, num3;
+    scanf("%d%d%d", &num1,&num2,&num3);
+    if (num1 > num2) && (num1 > num3)
+    {  
+        printf("%d", num1);
+    }
+    elseif(num2>num3)
+    { 
+        printf("%d", num2)
+    }
+    else
+    {  
+        printf("%d", num3);
+    }
+    return 0;
+}
+
+
+fixed program:
+
+#include<stdio.h>
+int main()
+{
+    int num1, num2, num3;
+    scanf("%d%d%d", &num1,&num2,&num3);
+    if ((num1 > num2) && (num1 > num3))
+    {  
+        printf("%d", num1);
+    }
+    else if(num2>num3)
+    { 
+        printf("%d", num2);
+    }
+    else
+    {  
+        printf("%d", num3);
+    }
+    return 0;
+}
